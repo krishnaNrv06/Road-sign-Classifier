@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Road Sign Classifier | Autonomous Driving Research</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-dark text-white text-center">
+                    <h2 class="mb-1">Road Sign Classifier</h2>
+                    <p class="mb-0">For Autonomous Driving Research</p>
+                </div>
+                <div class="card-body p-4">
+                    <div class="alert alert-info">
+                        <strong>Problem Statement:</strong> Classify road signs from images into categories like Stop, Speed Limit, etc. for autonomous driving research<br>
+                        <strong>ML/AI Concepts:</strong> CNN, Data Augmentation, Transfer Learning<br>
+                        <strong>Dataset:</strong> German Traffic Sign Dataset from Kaggle<br>
+                        <strong>Model Performance:</strong> 94.43% Test Accuracy | 100% Stop Sign Detection
+                    </div>
+
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="file" class="form-label fw-bold">Upload Traffic Sign Image</label>
+                            <input class="form-control form-control-lg" type="file" name="file" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100">Classify Sign</button>
+                    </form>
+
+                    {% if prediction %}
+                    <hr class="my-4">
+                    <div class="alert {% if is_critical %}alert-danger{% else %}alert-success{% endif %} text-center">
+                        <h3 class="alert-heading">Prediction: {{ prediction }}</h3>
+                        <p class="fs-5 mb-1">Confidence: {{ confidence }}%</p>
+                        {% if is_critical %}
+                        <p class="mb-0 fw-bold">⚠️ SAFETY-CRITICAL SIGN DETECTED</p>
+                        {% endif %}
+                    </div>
+                    <div class="text-center">
+                        <img src="{{ image_path }}" class="img-fluid rounded border" style="max-height: 350px;" alt="Uploaded sign">
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="card-footer text-center text-muted">
+                    <strong>Tech Stack:</strong> Flask | TensorFlow/Keras | PIL | Bootstrap
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
